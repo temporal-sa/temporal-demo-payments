@@ -19,6 +19,8 @@ make seed          # six workflows in six distinct states
 
 Then open **http://localhost:8080**.
 
+To present the demo, follow [RUNBOOK.md](RUNBOOK.md): the walkthrough beat by beat, and where in the code each part happens.
+
 During startup, the Docker step shows Compose's image and container progress plus an elapsed-time
 update every five seconds while it is quiet. If Docker Desktop does not respond within 20 seconds,
 startup stops with an error instead of continuing without the proxy. Restart Docker Desktop and
