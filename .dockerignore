@@ -1,0 +1,5 @@
+.git
+**/build
+**/.gradle
+**/node_modules
+.scenario-store.json

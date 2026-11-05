@@ -12,8 +12,8 @@ spring:
       # WorkflowServiceStubs.newLocalServiceStubs(), which silently discards the metrics
       # scope and the stub customizers. Spelling the address out takes the default branch,
       # which applies both -- this is the difference between having SDK metrics and not.
-      target: 127.0.0.1:7233
-    namespace: default
+      target: ${TEMPORAL_HOST:127.0.0.1:7233}
+    namespace: ${TEMPORAL_NAMESPACE:default}
     # The primary process is the API only. Workers run as separate JVMs that it
     # supervises, so one can be killed and restarted on demand without taking the
     # API -- and therefore the restart button -- down with it.
@@ -58,6 +58,13 @@ server:
   # Caddy gives Temporal the catch-all, so Spring stays inside the demo's prefixes.
   error:
     path: /demo-api/error
+
+demo:
+  ai:
+    provider: ${DEMO_AI_PROVIDER:ollama}
+    model: ${DEMO_AI_MODEL:qwen3.5:9b}
+    openai-api-key: ${OPENAI_API_KEY:}
+    openai-url: ${DEMO_OPENAI_URL:https://api.openai.com/v1}
 
 management:
   endpoints:
