@@ -109,9 +109,10 @@ Clear the review facts to see another no-lookup path. The reason appears in the 
 **MarkInvestigationSkipped** Activity makes that decision explicit on the Temporal timeline.
 
 **Cloud adapter:** `docker/cloud.Dockerfile` packages the Spring API and its supervised
-worker in one container. Set `DEMO_HOSTING=cloud`, `DEMO_TEMPORAL_UI_URL` to the
-Temporal Cloud namespace page, `DEMO_AI_PROVIDER=openai`, `DEMO_AI_MODEL=gpt-4.1-mini`,
-and inject `OPENAI_API_KEY` from a secret. The registry's Temporal proxy lets the app
+worker in one container. Set `DEMO_HOSTING=cloud`, `DEMO_AI_PROVIDER=openai`,
+`DEMO_AI_MODEL=gpt-4.1-mini`, and inject `OPENAI_API_KEY` from a secret. The Temporal UI
+link is `TEMPORAL_UI_URL` (the UI base) and `TEMPORAL_UI_NAMESPACE`, which the demo platform
+injects; without them, set `DEMO_TEMPORAL_UI_URL` to the namespace page. The registry's Temporal proxy lets the app
 continue using localhost:7233; its injected `TEMPORAL_NAMESPACE` selects the Cloud
 namespace. In cloud mode the demo links to Temporal Cloud and hides the local Grafana
 pane. Local mode keeps Ollama and Qwen by default. Scenario configuration is stored in
