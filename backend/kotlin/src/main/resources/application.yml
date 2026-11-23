@@ -65,7 +65,9 @@ demo:
     model: ${DEMO_AI_MODEL:qwen3.5:9b}
     openai-api-key: ${OPENAI_API_KEY:}
     openai-reasoning-effort: ${DEMO_AI_REASONING_EFFORT:none}
-    openai-url: ${DEMO_OPENAI_URL:https://api.openai.com/v1}
+    # DEMO_OPENAI_URL overrides; otherwise the standard OPENAI_BASE_URL (an OpenAI-compatible
+    # gateway such as LiteLLM) applies, then OpenAI itself.
+    openai-url: ${DEMO_OPENAI_URL:${OPENAI_BASE_URL:https://api.openai.com/v1}}
 
 management:
   endpoints:
