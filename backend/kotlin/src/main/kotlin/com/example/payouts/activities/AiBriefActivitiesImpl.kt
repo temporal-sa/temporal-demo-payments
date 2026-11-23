@@ -35,6 +35,7 @@ class AiBriefActivitiesImpl(
     @Value("\${demo.ai.provider:ollama}") private val provider: String = "ollama",
     @Value("\${demo.ai.openai-url:https://api.openai.com/v1}") private val openAiUrl: String = "https://api.openai.com/v1",
     @Value("\${demo.ai.openai-api-key:}") private val openAiApiKey: String = "",
+    @Value("\${demo.ai.openai-reasoning-effort:none}") private val openAiReasoningEffort: String = "none",
 ) : AiBriefActivities {
     private val json = Json { ignoreUnknownKeys = true }
     private val http = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(2)).build()
@@ -148,6 +149,9 @@ class AiBriefActivitiesImpl(
             put("model", model)
             put("temperature", 0)
             put("max_completion_tokens", maxTokens)
+            // Reasoning models spend reasoning tokens from max_completion_tokens; at their default
+            // effort the 300-token brief ran out before any JSON. Blank omits the parameter.
+            if (openAiReasoningEffort.isNotBlank()) put("reasoning_effort", openAiReasoningEffort)
             put("messages", buildJsonArray {
                 add(buildJsonObject { put("role", "system"); put("content", system) })
                 add(buildJsonObject { put("role", "user"); put("content", prompt) })

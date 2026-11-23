@@ -35,6 +35,7 @@ class AiBriefActivitiesImplTest {
             assertEquals("Compare past amounts", choice.reason)
             assertEquals("Bearer test-key", authorization)
             assertTrue(requestBody.contains("\"type\":\"json_schema\""))
+            assertTrue(requestBody.contains("\"reasoning_effort\":\"none\""))
             assertTrue(requestBody.contains("\"model\":\"gpt-4.1-mini\""))
         } finally {
             server.stop(0)
