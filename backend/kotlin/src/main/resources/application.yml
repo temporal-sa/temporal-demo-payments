@@ -64,6 +64,7 @@ demo:
     provider: ${DEMO_AI_PROVIDER:ollama}
     model: ${DEMO_AI_MODEL:qwen3.5:9b}
     openai-api-key: ${OPENAI_API_KEY:}
+    openai-reasoning-effort: ${DEMO_AI_REASONING_EFFORT:none}
     openai-url: ${DEMO_OPENAI_URL:https://api.openai.com/v1}
 
 management:
